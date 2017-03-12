@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>Guestbook Jinja for SmartNinja</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <h2>Guestbook</h2>
+            <h4>Thanks for staying here at Filton, please leave a guestbook entry here:</h4>
+
+            <form method="post" action="/">
+            <div class="row">
+                    <div class="col-6 col-md-4">
+                        <div class="input-group"> 
+                            <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                            <input class="form-control" name="name" placeholder="Name" aria-describedby="sizing-addon2" type="text">
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                    <div class="col-6 col-md-4">            
+                        <div class="input-group">
+                            <span class="input-group-addon" id="sizing-addon2">@</span>
+                            <input class="form-control" name="email" placeholder="E-Mail" aria-describedby="sizing-addon2" type="email">
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-md-4">
+                     <div class="form-group">
+                        <textarea class="form-control" rows="4" name="text" placeholder="Your message" type="text" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <p><button type="submit">Submit</button></p>
+            </form>
+            <br>
+            {% if entries %}
+            <h4>List of guestbook entries</h4>
+            <ul>
+            {% for entry in entries %}
+                <p><b>{{ entry.name }}</b> ({{ entry.email }}) wrote:</p>
+                <p><i>{{ entry.text }}</i></p>
+        {% endfor %}
+            </ul>
+            {% endif -%}
+        </div>
+    </body>
+</html>
