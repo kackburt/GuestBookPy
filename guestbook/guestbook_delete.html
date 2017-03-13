@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guestbook Jinja for SmartNinja</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+    <h2>Do you really want to delete this message?</h2>
+    <blockquote>
+        <p><i>"{{ entry.text }}"</i></p>
+        <footer>Written by <b>{{ entry.name }}</b></footer>
+    </blockquote>
+
+    <form action="/delete/{{ entry.key.id() }}" method="post">
+        <button type="submit">YES, delete!</button>
+    </form>
+    </div>
+</body>
+</html>

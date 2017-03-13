@@ -40,13 +40,21 @@
             <br>
             {% if entries %}
             <h4>List of guestbook entries</h4>
-            <ul>
+            <blockquote>
             {% for entry in entries %}
-                <p><b>{{ entry.name }}</b> ({{ entry.email }}) wrote:</p>
+                <header><b>{{ entry.name }}</b> ({{ entry.email }}) wrote:</header>
                 <p><i>{{ entry.text }}</i></p>
-        {% endfor %}
-            </ul>
+                <footer>
+                    <a href="/edit/{{ entry.key.id() }}">Edit</a>
+                    -
+                    <a href="/delete/{{ entry.key.id() }}">Delete</a>
+                    -
+                    <a href="/invisible/{{ entry.key.id() }}">Make invisible</a>
+                </footer>
+            {% endfor %}
+            </blockquote>
             {% endif -%}
+
         </div>
     </body>
 </html>

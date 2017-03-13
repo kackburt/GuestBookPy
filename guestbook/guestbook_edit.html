@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guestbook Jinja for SmartNinja</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+    <h2>Edit whatever you want!</h2>
+    <form method="post" action="/edit/{{ entry.key.id() }}">
+        <div class="row">
+                <div class="col-6 col-md-4">
+                    <div class="input-group"> 
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                        <input class="form-control" name="newname" placeholder="Name" aria-describedby="sizing-addon2" type="text" value="{{ entry.name }}">
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-6 col-md-4">            
+                    <div class="input-group">
+                        <span class="input-group-addon" id="sizing-addon2">@</span>
+                        <input class="form-control" name="newemail" placeholder="E-Mail" aria-describedby="sizing-addon2" type="email" value="{{ entry.email }}">
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-4">
+                    <div class="form-group">
+                    <textarea class="form-control" rows="4" name="newtext" placeholder="Your new message here..." type="text" value="{{ entry.text }}" required></textarea>
+                </div>
+            </div>
+        </div>
+        <p><button type="submit">Submit</button></p>
+    </form>
+    </div>
+</body>
+</html>
