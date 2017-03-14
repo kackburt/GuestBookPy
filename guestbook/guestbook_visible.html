@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Delete - Guestbook Jinja for SmartNinja</title>
+    <title>Make visible - Guestbook Jinja for SmartNinja</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
-    <h2>Do you really want to delete this message?</h2>
+    <h2>Do you really want to make this message visible?</h2>
     <blockquote>
         <p><i>"{{ entry.text }}"</i></p>
         <footer>Written by <b>{{ entry.name }}</b></footer>
     </blockquote>
 
-    <form action="/delete/{{ entry.key.id() }}" method="post">
-        <button type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> DELETE</button>
+    <form action="/visible/{{ entry.key.id() }}" method="post">
+        <button type="submit"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> MAKE VISIBLE</button>
     </form>
     </div>
 </body>

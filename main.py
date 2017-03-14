@@ -28,7 +28,8 @@ class BaseHandler(webapp2.RequestHandler):
 
 class MainHandler(BaseHandler):
     def get(self):
-        entries = GBEntry.query(GBEntry.visible == True).fetch()
+        #entries = GBEntry.query(GBEntry.visible == True).fetch()
+        entries = GBEntry.query().fetch()
         params = {"entries": entries}
         return self.render_template("guestbook.html", params=params)
 
@@ -76,11 +77,11 @@ class DeleteEntryHandler(BaseHandler):
         return self.redirect_to("guestbook-home")
 
 
-class VisibilityEntryHandler(BaseHandler):
+class InvisibleEntryHandler(BaseHandler):
     def get(self, dbobject_id):
         entry = GBEntry.get_by_id(int(dbobject_id))
         params = {"entry": entry}
-        return self.render_template("guestbook_visibility.html", params=params)
+        return self.render_template("guestbook_invisible.html", params=params)
 
     def post(self, dbobject_id):
         entry = GBEntry.get_by_id(int(dbobject_id))
@@ -89,9 +90,23 @@ class VisibilityEntryHandler(BaseHandler):
         return self.redirect_to("guestbook-home")
 
 
+class VisibleEntryHandler(BaseHandler):
+    def get(self, dbobject_id):
+        entry = GBEntry.get_by_id(int(dbobject_id))
+        params = {"entry": entry}
+        return self.render_template("guestbook_visible.html", params=params)
+
+    def post(self, dbobject_id):
+        entry = GBEntry.get_by_id(int(dbobject_id))
+        entry.visible = True
+        entry.put()
+        return self.redirect_to("guestbook-home")
+
+
 app = webapp2.WSGIApplication([
     webapp2.Route('/', MainHandler, name="guestbook-home"),
     webapp2.Route('/edit/<dbobject_id:\d+>', EditEntryHandler),
     webapp2.Route('/delete/<dbobject_id:\d+>', DeleteEntryHandler),
-    webapp2.Route('/invisible/<dbobject_id:\d+>', VisibilityEntryHandler)
+    webapp2.Route('/invisible/<dbobject_id:\d+>', InvisibleEntryHandler),
+    webapp2.Route('/visible/<dbobject_id:\d+>', VisibleEntryHandler)
 ], debug=True)

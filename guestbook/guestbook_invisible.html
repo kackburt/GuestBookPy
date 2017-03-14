@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Guestbook Jinja for SmartNinja</title>
+    <title>Make invisible - Guestbook Jinja for SmartNinja</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
     </blockquote>
 
     <form action="/invisible/{{ entry.key.id() }}" method="post">
-        <button type="submit">YES, make invisible!</button>
+        <button type="submit"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> MAKE INVISIBLE</button>
     </form>
     </div>
 </body>
